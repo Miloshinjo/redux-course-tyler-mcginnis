@@ -1,14 +1,5 @@
 
 {
-  type: 'ADD_TODO',
-  todo: {
-    id: 0,
-    name: 'Learn Redux',
-    complete: false
-  }
-}
-
-{
   type: 'REMOVE_TODO',
   id: 0
 }
@@ -38,6 +29,7 @@
   3) Never produce any side effects (No interaction with the outside world - Ajax requests, DOM interaction...)
 */
 
+// Reducer function
 function todos (state = [], action) {
   if (action.type === 'ADD_TODO') {
     return state.concat([action.todo])
@@ -47,7 +39,7 @@ function todos (state = [], action) {
 }
 
 
-function createStore() {
+function createStore(reducer) {
   // The store should have 4 parts
   // 1. State
   // 2. Get the state
@@ -67,8 +59,26 @@ function createStore() {
     }
   }
 
+  const dispatch = (action) => {
+    // call todos
+    state = reducer(state, action)
+    // loop over listeners and invoke each listner
+    listeners.forEach((listener) => listener())
+  }
+
   return {
     getState,
-    subscribe
+    subscribe,
+    dispatch
   }
 }
+
+const store = createStore()
+store.dispatch({
+  type: 'ADD_TODO',
+  todo: {
+    id: 0,
+    name: 'Learn Redux',
+    complete: false
+  }
+})
