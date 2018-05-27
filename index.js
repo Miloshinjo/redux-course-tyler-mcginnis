@@ -58,23 +58,31 @@ function addTodoAction (todo) {
 }
 
 function removeTodoAction (id) {
-  type: REMOVE_TODO,
-  id
+  return {
+    type: REMOVE_TODO,
+    id
+  }
 }
 
 function toggleTodoAction (id) {
-  type: TOGGLE_TODO,
-  id
+  return {
+    type: TOGGLE_TODO,
+    id
+  }
 }
 
 function addGoalAction (goal) {
-  type: ADD_GOAL,
-  goal
+  return {
+    type: ADD_GOAL,
+    goal
+  }
 }
 
 function removeGoalAction (id) {
-  type: REMOVE_GOAL,
-  id
+  return {
+    type: REMOVE_GOAL,
+    id
+  }
 }
 
 // Reducer functions
