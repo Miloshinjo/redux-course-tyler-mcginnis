@@ -4,7 +4,7 @@ import List from './List'
 import {
   handleAddGoal,
   handleDeleteGoal
-}
+} from '../actions/goals'
 
 class Goals extends React.Component {
   addItem = (e) => {
